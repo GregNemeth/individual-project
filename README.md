@@ -1,4 +1,4 @@
-# Cocktail recipe finder - Tipsy Thursday
+# Cocktail recipe finder - Tipsy Tuesday
 
 ## Contents
 

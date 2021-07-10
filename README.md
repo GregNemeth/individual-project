@@ -90,8 +90,8 @@ The implementation of CRUD can be seen below:
 ## **Architecture**
 
 For project tracking I intend to use Jira. Practicing with this tool is going to be handy,  considering it is widely adoptded and its ability to be integrated with other parts of the development pipeline.
-![First tasks in Jira][jira_beginning]
-[jira_beginning]: https://github.com/GregNemeth/individual-project/blob/dev/Images/Jira_beginning.bmp 
+
+![First tasks in Jira] (https://github.com/GregNemeth/individual-project/blob/dev/Images/Jira_beginning.bmp) 
 
 
 ## **Development**

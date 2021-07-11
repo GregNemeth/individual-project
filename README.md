@@ -110,6 +110,9 @@ This scheme can be expanded in the future, for example: if we would like to impl
 However, for now , this is outside of the current scope of the project.
 
 For the sake of completeness I also inculed a Chen-style diagram we can see on the right.
+<br/><br/>
+<br/><br/>
+<br/>
 
 </div>
 

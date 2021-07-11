@@ -94,5 +94,8 @@ For project tracking I intend to use Jira. Practicing with this tool is going to
 ![First tasks in Jira](https://github.com/GregNemeth/individual-project/blob/dev/Images/Jira_beginning.bmp) 
 
 
+![erd_diagram](https://github.com/GregNemeth/individual-project/blob/dev/Images/ERD.png)
+
+
 ## **Development**
 

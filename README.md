@@ -6,7 +6,7 @@
    * [Objective](#objective)
    * [Proposal](#proposal)
  * [Architecture](#architecture)
-   * [Jira board](#jira-board)
+   * [Jira board](#project-tracking)
    * [Entity Relationship Diagram](#entity-relationship-diagram)
    * [Risk assessment](#risk-assessment)
    * [Test analysis](#test-analysis)
@@ -88,11 +88,11 @@ The implementation of CRUD can be seen below:
 * Delete User account
 
 ## **Architecture**
-
+#### _Project-tracking_
 For project tracking I intend to use Jira. Practicing with this tool is going to be handy,  considering it is widely adoptded and its ability to be integrated with other parts of the development pipeline.
 
 ![First tasks in Jira](https://github.com/GregNemeth/individual-project/blob/dev/Images/Jira_beginning.bmp) 
-
+#### _entity relationship diagram_
 We can see below the UML styled Entity-Relationship Diagram:
 
 
@@ -111,8 +111,12 @@ However, for now , this is outside of the current scope of the project.
 
 For the sake of completeness I also inculed a Chen-style diagram we can see on the right.
 <br/><br/>
-<br/><br/>
+
+#### _Risk assessment_
+You can see a snippet of the current risk assessment below; this document is extended continously, in light of new information.
 <br/>
+![risk_assessment](https://github.com/GregNemeth/individual-project/blob/dev/Images/risk_assessment_in_progress_1.png)
+
 
 </div>
 

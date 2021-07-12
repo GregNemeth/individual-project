@@ -113,7 +113,7 @@ For the sake of completeness I also inculed a Chen-style diagram we can see on t
 <br/><br/>
 
 #### _Risk assessment_
-You can see a snippet of the current risk assessment below; this document is extended continously, in light of new information.
+You can see a snippet of the current risk assessment below; this document is extended continously, in light of new information. Any new information added to the risk assessment is going to be hightlighted. You can see the original over [here](https://docs.google.com/spreadsheets/d/1xwiIfhJBYPYRosDp-_ihJtK8yqbxVfID_9N0vqu9v_I/edit?usp=sharing)
 <br/>
 ![risk_assessment](https://github.com/GregNemeth/individual-project/blob/dev/Images/risk_assessment_in_progress_1.png)
 

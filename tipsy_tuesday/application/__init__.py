@@ -10,4 +10,5 @@ app.config['SECRET_KEY'] = str(os.urandom(16))
 
 db = SQLAlchemy(app)
 
+from application import auth_routes
 from application import routes

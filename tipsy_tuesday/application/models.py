@@ -1,4 +1,3 @@
-from enum import unique
 from application import db
 
 

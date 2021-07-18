@@ -10,5 +10,8 @@ app.config['SECRET_KEY'] = str(os.urandom(16))
 
 db = SQLAlchemy(app)
 
-from application import auth_routes
-from application import routes
+from application import auth_routes as auth_blueprint
+app.register_blueprint(auth_blueprint)
+
+from application import routes as routes_blueprint
+app.register_blueprint(routes_blueprint)

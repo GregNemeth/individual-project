@@ -1,0 +1,11 @@
+<body>
+    <title>Welcome to the Tipsy Tuesday recipe app</title>
+    <div class='navbar'>
+        <a href="{{ url_for('add_recipe') }}">Add recipe</a>
+        <a href="{{ url_for('add_ingredient') }}">Add ingredient</a>
+    </div>
+
+    {% block body %}
+
+    {% endblock body %}
+</body>

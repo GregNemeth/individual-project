@@ -2,9 +2,9 @@ from application import db
 
 class Junction(db.Model):
     rij_id = db.Column(db.Integer, primary_key=True)
-    rec_id = db.Column(db.Integer, db.ForeignKey('cocktail.rec_id'), nullable=False)
-    ing_id = db.Column(db.Integer, db.ForeignKey('ingredient.ing_id'), nullable=False)
-    quantity_id = db.Column(db.Integer, db.ForeignKey('quantity.quantity_id'), nullable=False)
+    rec_id = db.Column('c_rec_id',db.Integer, db.ForeignKey('cocktailrecipes.rec_id'), nullable=False)
+    ing_id = db.Column('ingred_id',db.Integer, db.ForeignKey('ingredient.ing_id'), nullable=False)
+    quantity_id = db.Column('quants_id',db.Integer, db.ForeignKey('quantity.quantity_id'), nullable=False)
 
 class Cocktailrecipes(db.Model):
     rec_id = db.Column(db.Integer, primary_key=True)
@@ -16,13 +16,13 @@ class Cocktailrecipes(db.Model):
 class Ingredientgroup(db.Model):
     ing_group_id = db.Column(db.Integer, primary_key=True)
     group_name = db.Column(db.String(40), nullable=False, unique=True)
-    ingridients = db.relationship('Ingredient', backref='ingredientGroup')
+    ingridients = db.relationship('Ingredient', backref='ingredientgroup')
     
 
 class Ingredient(db.Model):
     ing_id = db.Column(db.Integer, primary_key=True)
     ing_name = db.Column(db.String(40), nullable=False, unique=True)
-    ing_group_id = db.Column(db.Integer, db.ForeignKey('ingredientGroup.ing_group_id'), nullable=False)
+    ing_group_id = db.Column(db.Integer, db.ForeignKey('ingredientgroup.ing_group_id'), nullable=False)
     junction = db.relationship('Junction', backref='ingredient')
 
 class Quantity(db.Model):

@@ -7,7 +7,7 @@ from application.forms import AddIngredient
 
 @app.route('/')
 def home():
-    return render_template(url_for('home'))
+    return render_template('home.html')
 
 
 @app.route('/add_ingredient', methods=["GET", "POST"])
@@ -15,7 +15,8 @@ def add_ingredient():
     form = AddIngredient()
     
     if request.method == 'POST':
-        new_ingredient = Ingredient(ing_name=form.ingredient.data, ing_group_id=form.ing_group.data)
+        new_ingredient = Ingredient(ing_name=form.ingredient.data)
+        new_ingredient.ing_group_id = form.ing_group.data
         db.session.add(new_ingredient)
         db.session.commit()
 
@@ -23,8 +24,9 @@ def add_ingredient():
     
     else:
         ing_groups = Ingredientgroup.query.all()
-        form.ing_group.choices = [(ing_groups.ing_group_id, ing_groups.group_name) for ing_group in ing_groups]
-
+        form.ing_group.choices = []
+        for ing_group in ing_groups:
+            form.ing_group.choices.append((ing_group.ing_group_id, ing_group.group_name))
         return render_template('add_ingredient.html', form=form)
 
 

@@ -72,13 +72,16 @@ def add_ing_to_rec():
     form = AddIngreds()
     aringredients = Ingredient.query.all()
     arquants = Quantity.query.all()
+    rec = Cocktailrecipes.query.order_by(Cocktailrecipes.rec_id.desc()).first()
 
     if request.method == 'POST':
-        new_ingredient = Ingredient(ing_name=form.ingredient.data)
-        new_ingredient.ing_group_id = form.ing_group.data
-        db.session.add(new_ingredient)
+        new_junction = Junction(rec_id=rec)
+        new_junction.ing_id = form.ingredient.data
+        new_junction.quantity_id = form.quantity.data
+        db.session.add(new_junction)
         db.session.commit()
-
+        return(redirect(url_for('add_ing_to_rec')))
+        
     else:
         form.ingredient.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
         form.quantity.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]

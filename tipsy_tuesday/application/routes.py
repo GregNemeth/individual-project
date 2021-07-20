@@ -3,7 +3,7 @@ from flask import redirect, request, url_for
 from flask.templating import render_template
 from application import app, db
 from application.models import Cocktailrecipes, Ingredientgroup, Ingredient, Quantity, Junction
-from application.forms import AddGroup, AddIngredient, AddRecipe, Ingreds
+from application.forms import AddGroup, AddIngredient, AddRecipe, AddIngreds
 
 
 @app.route('/')
@@ -48,12 +48,9 @@ def add_group():
         return render_template('add_group.html', form=form)
 
 
-@app.route('/add_recipe')
+@app.route('/add_recipe', methods=["GET", "POST"])
 def add_recipe():
     form = AddRecipe()
-    form2 = Ingreds()
-    aringredients = Ingredient.query.all()
-    arquants = Quantity.query.all()
     
     if request.method == 'POST':
         new_recipe = Cocktailrecipes(name=form.name.data)
@@ -62,15 +59,27 @@ def add_recipe():
         db.session.add(new_recipe)
         db.session.commit()
         
-        return(redirect(url_for('home')))
+        return(redirect(url_for('add_ing_to_rec')))
 
     else:
-        
-        form2.ingredient.choices = [(ingred.ing_id, ingred.ing_name)for ingred in aringredients]
-        form2.quantity.choices = [(quant.quantity_id, quant.quantity_ml)for quant in arquants]
+                
+
+        return render_template('add_recipe.html', form=form)
         
 
-        return render_template('add_recipe.html', form=form, form2=form2)
-        
+@app.route('/add_ing_to_rec', methods=["GET", "POST"])
+def add_ing_to_rec():
+    form = AddIngreds()
+    aringredients = Ingredient.query.all()
+    arquants = Quantity.query.all()
 
-    
+    if request.method == 'POST':
+        new_ingredient = Ingredient(ing_name=form.ingredient.data)
+        new_ingredient.ing_group_id = form.ing_group.data
+        db.session.add(new_ingredient)
+        db.session.commit()
+
+    else:
+        form.ingredient.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
+        form.quantity.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
+        return render_template('add_ing_to_rec.html', form=form)

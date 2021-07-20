@@ -12,12 +12,7 @@
             <br>
             {{ form.method.label }}&emsp;&emsp;&emsp; {{ form.method }}
             <br>
-            {% for ingred in form.ings %}
-                {{ ingred.form.ingredient.label }} {{ ingred.form.ingredient }} <br>
-                {{ ingred.form.quantity.label }} {{ ingred.form.quantity }} <br>
-            {% endfor %}
-            <br>
-            {{ form.submit }}
+            {{ form.submit }} <a href="{{ url_for('add_ing_to_rec') }}">Add ingredients to this recipe</a>
         </form>
     </div>
 </body>

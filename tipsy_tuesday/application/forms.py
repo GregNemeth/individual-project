@@ -23,3 +23,6 @@ class AddRecipe(FlaskForm):
     
     submit = SubmitField('add recipe')
 
+class AddIngreds(FlaskForm):
+    ingredient = SelectField('choose ingredient', choices=[])
+    quantity = SelectField('choose quantity', choices=[])

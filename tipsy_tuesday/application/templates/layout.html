@@ -1,8 +1,10 @@
+<!DOCTYPE html>
 <html>
 
     <body>
        <h1>Welcome to the Tipsy Tuesday cocktail recipe app</h1>
         <div class='navbar'>
+            <a href="{{ url_for('home') }}">Home</a>
             <a href="{{ url_for('add_recipe') }}">Add recipe</a>
             <a href="{{ url_for('add_group') }}">Add group</a>
             <a href="{{ url_for('add_ingredient') }}">Add ingredient</a>

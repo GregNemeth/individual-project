@@ -10,4 +10,10 @@
         {{ group.ing_group_id }} {{ group.group_name }}
     </div>
 {% endfor %}
+<h3 align="center">Ingredients Available</h3>
+{% for ingredient in ingredients %}
+    <div align="center" class='ingredients'>
+        {{ ingredient.ing_name }} 
+    </div>
+{% endfor %}
 {% endblock body %}

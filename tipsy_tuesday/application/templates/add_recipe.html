@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<body>
+    <div class='form'>
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <br>
+            {{ form.name.label }} &emsp;&emsp;&emsp;{{ form.name }} 
+            <br>
+            {{ form.description.label }} &nbsp;{{ form.description }}   
+            <br>
+            {{ form.method.label }}&emsp;&emsp;&emsp; {{ form.method }}
+            <br>
+            {% for ingred in form.ings %}
+                {{ ingred.form.ingredient.label }} {{ ingred.form.ingredient }} <br>
+                {{ ingred.form.quantity.label }} {{ ingred.form.quantity }} <br>
+            {% endfor %}
+            <br>
+            {{ form.submit }}
+        </form>
+    </div>
+</body>
+
+{% endblock body %}

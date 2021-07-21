@@ -15,13 +15,17 @@
 
 {% for group in groups %}
     <div class='groups'>
+        {% if group.group_name != None %}
         &emsp;{{ group.group_name }}
+        {% endif %}
     </div>
 {% endfor %}
 <h3>&emsp;Ingredients Available</h3>
 {% for ingredient in ingredients %}
     <div class='ingredients'>
+        {% if ingredient.ing_name != None %}
         &emsp;{{ ingredient.ing_name }} 
+        {% endif %}
     </div>
 {% endfor %}
 {% endblock body %}

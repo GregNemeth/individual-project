@@ -4,7 +4,13 @@ from application import db
 db.drop_all()
 db.create_all()
 
+db.session.add(Ingredientgroup(group_name=None))
+db.session.add(Ingredient(ing_name=None))
+
 db.session.add(Quantity(quantity_ml='1.5'))
+db.session.add(Quantity(quantity_ml='4.5'))
+db.session.add(Quantity(quantity_ml='10'))
+db.session.add(Quantity(quantity_ml='15'))
 db.session.add(Quantity(quantity_ml='25'))
 db.session.add(Quantity(quantity_ml='30'))
 db.session.add(Quantity(quantity_ml='35'))

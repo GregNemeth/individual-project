@@ -15,14 +15,14 @@ class Cocktailrecipes(db.Model):
 
 class Ingredientgroup(db.Model):
     ing_group_id = db.Column(db.Integer, primary_key=True)
-    group_name = db.Column(db.String(40), nullable=False, unique=True)
+    group_name = db.Column(db.String(40), unique=True)
     ingridients = db.relationship('Ingredient', backref='ingredientgroup')
     
 
 class Ingredient(db.Model):
     ing_id = db.Column(db.Integer, primary_key=True)
-    ing_name = db.Column(db.String(40), nullable=False, unique=True)
-    ing_group_id = db.Column('Ingredientgroup',db.Integer, db.ForeignKey('ingredientgroup.ing_group_id'), nullable=False)
+    ing_name = db.Column(db.String(40), unique=True)
+    ing_group_id = db.Column('Ingredientgroup',db.Integer, db.ForeignKey('ingredientgroup.ing_group_id'))
     junction = db.relationship('Junction', backref='ingredient')
 
 class Quantity(db.Model):

@@ -15,14 +15,17 @@ class Ingreds(Form):
     ingredient = SelectField('choose ingredient', choices=[])
     quantity = SelectField('choose quantity', choices=[])
 
+
+
 class AddRecipe(FlaskForm):
     name = StringField('Recipe name')
     description = StringField('Recipe description')
     method = StringField('how its done')
-    ings = FieldList(FormField(Ingreds), min_entries=3)
-    
+    ings = SelectField("Ingreds", choices=[])
+    quants = SelectField('choose quantity', choices=[])
     submit = SubmitField('add recipe')
 
 class AddIngreds(FlaskForm):
     ingredient = SelectField('choose ingredient', choices=[])
     quantity = SelectField('choose quantity', choices=[])
+    submit = SubmitField('add ingredient')

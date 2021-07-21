@@ -12,7 +12,9 @@
             <br>
             {{ form.method.label }}&emsp;&emsp;&emsp; {{ form.method }}
             <br>
-            {{ form.submit }} <a href="{{ url_for('add_ing_to_rec') }}">Add ingredients to this recipe</a>
+            {{ form.ings }} {{ form.quants }}
+            <br>
+            {{ form.submit }} 
         </form>
     </div>
 </body>

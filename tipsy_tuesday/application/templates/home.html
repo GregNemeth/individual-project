@@ -2,18 +2,26 @@
 
 {% block body %}
 <br>
+<div>
+    <h3>&emsp;Recipes added</h3>
+    {% for recipe in recipes %}
+    <div class='recipes'>
+        &emsp;{{ recipe.name }} <a href="{{ url_for('delete_recipe', rec_id=recipe.rec_id) }}">Delete</a>
+    </div>
+    {% endfor %}
+</div>
 <br>
-<h3>Groups Available </h3>
+<h3>&emsp;Groups Available </h3>
 
 {% for group in groups %}
     <div class='groups'>
-        {{ group.ing_group_id }} {{ group.group_name }}
+        &emsp;{{ group.group_name }}
     </div>
 {% endfor %}
-<h3 align="center">Ingredients Available</h3>
+<h3>&emsp;Ingredients Available</h3>
 {% for ingredient in ingredients %}
-    <div align="center" class='ingredients'>
-        {{ ingredient.ing_name }} 
+    <div class='ingredients'>
+        &emsp;{{ ingredient.ing_name }} 
     </div>
 {% endfor %}
 {% endblock body %}

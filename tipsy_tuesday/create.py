@@ -7,27 +7,16 @@ db.create_all()
 db.session.add(Ingredientgroup(group_name=None))
 db.session.add(Ingredient(ing_name=None))
 
-db.session.add(Quantity(quantity_ml='1.5'))
-db.session.add(Quantity(quantity_ml='4.5'))
-db.session.add(Quantity(quantity_ml='10'))
-db.session.add(Quantity(quantity_ml='15'))
-db.session.add(Quantity(quantity_ml='25'))
-db.session.add(Quantity(quantity_ml='30'))
-db.session.add(Quantity(quantity_ml='35'))
-db.session.add(Quantity(quantity_ml='40'))
-db.session.add(Quantity(quantity_ml='50'))
-db.session.add(Quantity(quantity_ml='60'))
+
+quants = ('1.5','4.5','10','15','25','30','35','40','50','60')
+
+for quantity in quants:
+    db.session.add(Quantity(quantity_ml=quantity))
+    
 db.session.commit()
 
-db.session.add(Ingredientgroup(group_name='Gin'))
-db.session.add(Ingredientgroup(group_name='Rum'))
-db.session.add(Ingredientgroup(group_name='Tequila'))
-db.session.add(Ingredientgroup(group_name='Vodka'))
-db.session.add(Ingredientgroup(group_name='Whisky'))
-db.session.add(Ingredientgroup(group_name='Vermouth'))
-db.session.add(Ingredientgroup(group_name='Liquor'))
-db.session.add(Ingredientgroup(group_name='Amaro'))
-db.session.add(Ingredientgroup(group_name='Bitter'))
-db.session.add(Ingredientgroup(group_name='Soft Drink'))
-db.session.add(Ingredientgroup(group_name='Dry Ingredient'))
+groups = ('Gin','Rum','Tequila','Whisky','Vodka','Vermouth','Liquor','Amaro','Bitter','Soft Drink','Dry Ingredient',)
+for group in groups:
+    db.session.add(Ingredientgroup(group_name=group))
+
 db.session.commit()

@@ -1,4 +1,4 @@
-from application.routes import add_group
+from application.routes import add_group, add_recipe, add_ingredient, home, update_recipe, delete_recipe
 from os import name
 from flask.helpers import url_for
 
@@ -20,26 +20,39 @@ class TestBase(TestCase):
         db.drop_all()
         db.create_all()
 
-        db.session.add(Quantity(quantity_ml='1.5'))
-        db.session.add(Quantity(quantity_ml='25'))
-        db.session.add(Quantity(quantity_ml='30'))
-        db.session.add(Quantity(quantity_ml='35'))
-        db.session.add(Quantity(quantity_ml='40'))
-        db.session.add(Quantity(quantity_ml='50'))
-        db.session.add(Quantity(quantity_ml='60'))
+        db.session.add(Ingredientgroup(group_name=None))
+        db.session.add(Ingredient(ing_name=None))
+        
+        quants = ('1.5','4.5','10','15','25','30','35','40','50','60')
+
+        for quantity in quants:
+            db.session.add(Quantity(quantity_ml=quantity))
+            
         db.session.commit()
 
-        db.session.add(Ingredientgroup(group_name='Gin'))
-        db.session.add(Ingredientgroup(group_name='Rum'))
-        db.session.add(Ingredientgroup(group_name='Tequila'))
-        db.session.add(Ingredientgroup(group_name='Vodka'))
-        db.session.add(Ingredientgroup(group_name='Whisky'))
-        db.session.add(Ingredientgroup(group_name='Vermouth'))
-        db.session.add(Ingredientgroup(group_name='Liquor'))
-        db.session.add(Ingredientgroup(group_name='Amaro'))
-        db.session.add(Ingredientgroup(group_name='Bitter'))
-        db.session.add(Ingredientgroup(group_name='Soft Drink'))
-        db.session.add(Ingredientgroup(group_name='Dry Ingredient'))
+        groups = ('Gin','Rum','Tequila','Whisky','Vodka','Vermouth','Liquor','Amaro','Bitter','Soft Drink','Dry Ingredient',)
+        for group in groups:
+            db.session.add(Ingredientgroup(group_name=group))
+
+        db.session.commit()
+
+        jensens = Ingredient(ing_name="Jensen's Old Tom")
+        jensens.ing_group_id = 2
+        db.session.add(jensens)
+        vermouth = Ingredient(ing_name="Punt e Mes")
+        vermouth.ing_group_id = 7
+        db.session.add(vermouth)
+        campari = Ingredient(ing_name="Campari")
+        campari.ing_group_id = 9
+        db.session.add(campari)
+
+        db.session.add(Cocktailrecipes(name='Negroni', description='Bittersweet aperitivo', method='stir until chilled and strain onto fresh ice'))
+        junction1 = Junction(rec_id=1,ing_id=2,quantity_id=6)
+        junction2= Junction(rec_id=1,ing_id=3,quantity_id=5)
+        junction3= Junction(rec_id=1,ing_id=4,quantity_id=5)
+        db.session.add(junction1)
+        db.session.add(junction2)
+        db.session.add(junction3)
         db.session.commit()
 
     def tearDown(self):
@@ -55,6 +68,19 @@ class TestViews(TestBase):
         self.assert200(response)
 
     def test_addgroup(self):
-        response = self.client.get(url_for(add_group))
+        response = self.client.get(url_for('add_group'))
         self.assert200(response)
 
+    def test_addrecipe(self):
+        response = self.client.get(url_for('add_recipe'))
+        self.assert200(response)
+
+    def test_updaterecipe(self):
+        response = self.client.get(url_for('update_recipe', rec_id=1))
+        self.assert200(response)
+
+    def test_deleterecipe(self):
+        response = self.client.get(url_for('delete_recipe', rec_id=1))
+        self.assertEqual(response.status_code, 302)
+
+    

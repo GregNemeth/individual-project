@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, FormField, FieldList, Form
+from wtforms import SelectField, StringField, SubmitField,  Form
 
 
 class AddIngredient(FlaskForm):
@@ -10,11 +10,6 @@ class AddIngredient(FlaskForm):
 class AddGroup(FlaskForm):
     group_name = StringField('Ingredient Group')
     submit = SubmitField('Add Group')
-
-class Ingreds(Form):
-    ingredient = SelectField('choose ingredient', choices=[])
-    quantity = SelectField('choose quantity', choices=[])
-
 
 
 class AddRecipe(FlaskForm):
@@ -32,9 +27,22 @@ class AddRecipe(FlaskForm):
     ings5 = SelectField("Ingreds", choices=[])
     quants5 = SelectField('choose quantity', choices=[])
     
-    submit = SubmitField('add recipe')
+    submit = SubmitField('add/update recipe')
 
-class AddIngreds(FlaskForm):
-    ingredient = SelectField('choose ingredient', choices=[])
-    quantity = SelectField('choose quantity', choices=[])
-    submit = SubmitField('add ingredient')
+class UpdateRecipe(FlaskForm):
+    name = StringField('Recipe name', default='')
+    description = StringField('Recipe description', default='')
+    method = StringField('how its done', default='')
+    ings1 = SelectField("Ingreds", choices=[])
+    quants1 = SelectField('choose quantity', choices=[])
+    ings2 = SelectField("Ingreds", choices=[])
+    quants2 = SelectField('choose quantity', choices=[])
+    ings3 = SelectField("Ingreds", choices=[])
+    quants3 = SelectField('choose quantity', choices=[])
+    ings4 = SelectField("Ingreds", choices=[])
+    quants4 = SelectField('choose quantity', choices=[])
+    ings5 = SelectField("Ingreds", choices=[])
+    quants5 = SelectField('choose quantity', choices=[])
+    
+    submit = SubmitField('add/update recipe')
+

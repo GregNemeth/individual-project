@@ -3,7 +3,7 @@ from flask import redirect, request, url_for
 from flask.templating import render_template
 from application import app, db
 from application.models import Cocktailrecipes, Ingredientgroup, Ingredient, Quantity, Junction
-from application.forms import AddGroup, AddIngredient, AddRecipe, Ingreds
+from application.forms import AddGroup, AddIngredient, AddRecipe, UpdateRecipe
 
 
 @app.route('/')
@@ -92,7 +92,7 @@ def add_recipe():
         return(redirect(url_for('home')))
 
     else:
-            
+           
         form.ings1.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
         form.quants1.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
         form.ings2.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
@@ -119,17 +119,66 @@ def delete_recipe(rec_id):
     
     return redirect(url_for('home'))
 
-@app.route('/update/<rec_id>', methods=['GET','POST'])
-def update(rec_id):
+@app.route('/update_recipe/<rec_id>', methods=['GET','POST'])
+def update_recipe(rec_id):
     current_recipe = Cocktailrecipes.query.get(rec_id)
-    form = AddRecipe
-    
+    form = UpdateRecipe()
+    aringredients = Ingredient.query.all()
+    arquants = Quantity.query.all()
+
     if request.method == 'POST':
         current_recipe.name = form.name.data
-        db.session.add(current_recipe)
+        current_recipe.description = form.description.data
+        current_recipe.method = form.method.data
+        drop_old_junction = Junction.query.filter_by(rec_id=current_recipe.rec_id).all()
+        for oj in drop_old_junction:
+            db.session.delete(oj)
         db.session.commit()
-
-        return redirect(url_for('home'))
+        
+       
+        new_junction1 = Junction(rec_id=current_recipe.rec_id)
+        new_junction1.ing_id = form.ings1.data
+        new_junction1.quantity_id = form.quants1.data
+        new_junction2 = Junction(rec_id=current_recipe.rec_id)
+        new_junction2.ing_id = form.ings2.data
+        new_junction2.quantity_id = form.quants2.data
+        new_junction3 = Junction(rec_id=current_recipe.rec_id)
+        new_junction3.ing_id = form.ings3.data
+        new_junction3.quantity_id = form.quants3.data
+        new_junction4 = Junction(rec_id=current_recipe.rec_id)
+        new_junction4.ing_id = form.ings4.data
+        new_junction4.quantity_id = form.quants4.data
+        new_junction5 = Junction(rec_id=current_recipe.rec_id)
+        new_junction5.ing_id = form.ings5.data
+        new_junction5.quantity_id = form.quants5.data
+        
+        db.session.add(new_junction1)
+        db.session.add(new_junction2)
+        db.session.add(new_junction3)
+        db.session.add(new_junction4)
+        db.session.add(new_junction5)
+        db.session.commit()
+        cleanup = Junction.query.filter_by(ing_id=1).all()
+        for items in cleanup:
+            db.session.delete(items)
+        db.session.commit()
+        
+        return(redirect(url_for('home')))
 
     else:
-        return render_template('add_recipe.html', form=form)
+        form.name.data = current_recipe.name
+        form.description.data = current_recipe.description
+        form.method.data = current_recipe.method
+        form.ings1.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
+        form.quants1.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
+        form.ings2.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
+        form.quants2.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
+        form.ings3.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
+        form.quants3.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
+        form.ings4.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
+        form.quants4.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
+        form.ings5.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
+        form.quants5.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
+        
+
+        return render_template('update_recipe.html', form=form)

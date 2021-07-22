@@ -2,16 +2,17 @@ from sqlalchemy import join, select
 from flask import redirect, request, url_for
 from flask.templating import render_template
 from application import app, db
-from application.models import Cocktailrecipes, Ingredientgroup, Ingredient, Quantity, Junction
+from application.models import Cocktailrecipes, Ingredient, Ingredientgroup, Junction, Quantity
 from application.forms import AddGroup, AddIngredient, AddRecipe, UpdateRecipe
 
 
 @app.route('/')
 def home():
+
     groups = Ingredientgroup.query.all()
     ingredients = Ingredient.query.all()
     recipes = Cocktailrecipes.query.all()
-
+    
     return render_template('home.html', groups=groups, ingredients=ingredients, recipes=recipes)
 
 
@@ -197,3 +198,18 @@ def show_details(rec_id):
         dictionary[i] = q
 
     return render_template('details.html', selected_recipe=selected_recipe, dictionary=dictionary)
+
+@app.route('/search_by_name', methods=['GET','POST'])
+def search():
+    
+    return 'name'
+
+@app.route('/search_by_group', methods=['GET','POST'])
+def search_by_group():
+    
+    return 'group'
+
+@app.route('/search_by_ing', methods=['GET','POST'])
+def search_by_ing():
+    
+    return 'ingredient'

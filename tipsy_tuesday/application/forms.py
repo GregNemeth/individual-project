@@ -1,9 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, StringField, SubmitField,  Form
+from wtforms import SelectField, StringField, SubmitField
+from wtforms.validators import DataRequired
 
 
 class AddIngredient(FlaskForm):
-    ingredient = StringField('Ingredient here')
+    ingredient = StringField('Ingredient here', validators=[DataRequired()])
     ing_group = SelectField('Choose ingredient group', choices=[])
     submit = SubmitField('Add ingredient')
 
@@ -13,9 +14,9 @@ class AddGroup(FlaskForm):
 
 
 class AddRecipe(FlaskForm):
-    name = StringField('Recipe name')
-    description = StringField('Recipe description')
-    method = StringField('how its done')
+    name = StringField('Recipe name', validators=[DataRequired()])
+    description = StringField('Recipe description', validators=[DataRequired()])
+    method = StringField('how its done', validators=[DataRequired()])
     ings1 = SelectField("Ingreds", choices=[])
     quants1 = SelectField('choose quantity', choices=[])
     ings2 = SelectField("Ingreds", choices=[])
@@ -45,4 +46,6 @@ class UpdateRecipe(FlaskForm):
     quants5 = SelectField('choose quantity', choices=[])
     
     submit = SubmitField('add/update recipe')
+
+
 

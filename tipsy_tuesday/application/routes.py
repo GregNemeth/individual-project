@@ -199,17 +199,17 @@ def show_details(rec_id):
 
     return render_template('details.html', selected_recipe=selected_recipe, dictionary=dictionary)
 
-@app.route('/search_by_name', methods=['GET','POST'])
-def search():
+# @app.route('/search_by_name', methods=['GET','POST'])
+# def search():
     
-    return 'name'
+#     return 'name'
 
-@app.route('/search_by_group', methods=['GET','POST'])
-def search_by_group():
+# @app.route('/search_by_group', methods=['GET','POST'])
+# def search_by_group():
     
-    return 'group'
+#     return 'group'
 
-@app.route('/search_by_ing', methods=['GET','POST'])
-def search_by_ing():
+# @app.route('/search_by_ing', methods=['GET','POST'])
+# def search_by_ing():
     
-    return 'ingredient'
+#     return 'ingredient'

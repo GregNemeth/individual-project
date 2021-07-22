@@ -83,4 +83,92 @@ class TestViews(TestBase):
         response = self.client.get(url_for('delete_recipe', rec_id=1))
         self.assertEqual(response.status_code, 302)
 
-    
+class TestRead(TestBase):
+    def test_home(self):
+        response = self.client.get(url_for('home'))
+
+        assert "Negroni" in response.data.decode()
+        assert "Recipes added" in response.data.decode()
+        
+
+class TestCreate(TestBase):
+    def test_addingred(self):
+        response = self.client.post(
+            url_for('add_ingredient'),
+            data={'ingredient':'dingle'},
+            follow_redirects=True
+            )
+
+        assert 'dingle' in response.data.decode()
+
+class TestCreateGroup(TestBase):
+    def test_addgroup(self):
+        response = self.client.post(
+            url_for('add_group'),
+            data={'group_name':'decoration'},
+            follow_redirects=True
+            )
+
+        assert 'decoration' in response.data.decode()
+
+class TestCreateRecipe(TestBase):
+    def test_addrec(self):
+        response = self.client.post(
+            url_for('add_recipe'),
+            data={'description':'sweet',
+                  'ings1':2,
+                  'ings2':3,
+                  'ings3':1,
+                  'ings4':1,
+                  'ings5':1,
+                  'method':'stir',
+                  'name':'martinez',
+                  'quants1':10,
+                  'quants2':5,
+                  'quants3':1,
+                  'quants4':1,
+                  'quants5':1,
+                  'submit':'add/update recipe'
+
+                  },
+            follow_redirects=True
+            )
+
+        assert 'martinez' in response.data.decode()
+
+class TestDelete(TestBase):
+    def test_delete(self):
+        response = self.client.get(
+            url_for('delete_recipe', rec_id=1),
+            follow_redirects=True
+        )
+
+        assert 'Negroni' not in response.data.decode()
+
+class TestupdateRecipe(TestBase):
+    def test_updaterec(self):
+        response = self.client.post(
+            url_for('update_recipe', rec_id=1),
+            data={'description':'sweet',
+                  'ings1':2,
+                  'ings2':3,
+                  'ings3':1,
+                  'ings4':1,
+                  'ings5':1,
+                  'method':'stir',
+                  'name':'martini',
+                  'quants1':10,
+                  'quants2':5,
+                  'quants3':1,
+                  'quants4':1,
+                  'quants5':1,
+                  'submit':'add/update recipe'
+
+                  },
+            follow_redirects=True
+            )
+
+        assert 'martini' in response.data.decode()
+
+
+

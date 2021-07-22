@@ -171,4 +171,11 @@ class TestupdateRecipe(TestBase):
         assert 'martini' in response.data.decode()
 
 
+class TestDetail(TestBase):
+    def test_detail(self):
+        response = self.client.get(
+            url_for('show_details', rec_id=1),
+            follow_redirects=True
+        )
 
+        assert 'Jensen' in response.data.decode()

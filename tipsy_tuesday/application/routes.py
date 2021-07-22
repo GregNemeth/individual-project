@@ -1,4 +1,4 @@
-
+from sqlalchemy import join, select
 from flask import redirect, request, url_for
 from flask.templating import render_template
 from application import app, db
@@ -182,3 +182,14 @@ def update_recipe(rec_id):
         
 
         return render_template('update_recipe.html', form=form)
+
+@app.route('/show_details/<rec_id>')
+def show_details(rec_id):
+    dictionary = {}
+    selected_recipe = Cocktailrecipes.query.get(rec_id)
+    ings_quants = db.session.query(Ingredient,Quantity).select_from(join(Ingredient, Junction)).join(Cocktailrecipes, Cocktailrecipes.rec_id == Junction.rec_id).join(Quantity, Quantity.quantity_id == Junction.quantity_id).filter(Junction.rec_id==Cocktailrecipes.rec_id).all()
+
+    for i, q in ings_quants:
+        dictionary[i] = q
+
+    return render_template('details.html', selected_recipe=selected_recipe, dictionary=dictionary)

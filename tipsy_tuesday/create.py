@@ -19,4 +19,24 @@ groups = ('Gin','Rum','Tequila','Whisky','Vodka','Vermouth','Liquor','Amaro','Bi
 for group in groups:
     db.session.add(Ingredientgroup(group_name=group))
 
+jensens = Ingredient(ing_name="Jensen's Old Tom")
+jensens.ing_group_id = 2
+db.session.add(jensens)
+vermouth = Ingredient(ing_name="Punt e Mes")
+vermouth.ing_group_id = 7
+db.session.add(vermouth)
+campari = Ingredient(ing_name="Campari")
+campari.ing_group_id = 9
+db.session.add(campari)
+db.session.add(Cocktailrecipes(name='Negroni', description='Bittersweet aperitivo', method='stir until chilled and strain onto fresh ice'))
+
+junction1 = Junction(rec_id=1,ing_id=2,quantity_id=6)
+junction2= Junction(rec_id=1,ing_id=3,quantity_id=5)
+junction3= Junction(rec_id=1,ing_id=4,quantity_id=5)
+
+db.session.add(junction1)
+db.session.add(junction2)
+db.session.add(junction3)
+db.session.commit()
+
 db.session.commit()

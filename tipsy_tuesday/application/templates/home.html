@@ -7,7 +7,8 @@
     {% for recipe in recipes %}
     <div class='recipes'>
         &emsp;{{ recipe.name }} <a href="{{ url_for('delete_recipe', rec_id=recipe.rec_id) }}">Delete</a>
-        <a href="{{ url_for('update_recipe', rec_id=recipe.rec_id) }}">Update</a>
+        <a href="{{ url_for('update_recipe', rec_id=recipe.rec_id) }}">Update</a> &emsp;
+        <a href="{{ url_for('show_details', rec_id=recipe.rec_id) }}">Details</a>
     </div>
     {% endfor %}
 </div>

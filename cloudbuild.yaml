@@ -1,5 +1,5 @@
 steps:
-  - name: 'ubuntu:bionic'  
+  - name: 'ubuntu'  
     entrypoint: 'bash'
     args:
       - |        

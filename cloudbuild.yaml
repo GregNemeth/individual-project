@@ -2,16 +2,17 @@ steps:
   - name: 'ubuntu'
       
     entrypoint: 'bash'
-    args: 
-      - '-c'
+    args:
+      - sh
+      - -c
       - |
-        #!/bin/bash
-        sudo apt-get update
-        sudo apt-get install chromium-browser wget unzip python3 python3-pip python3-venv -y
+        #!/usr/bin/bash
+        apt-get update
+        apt-get install chromium-browser wget unzip python3 python3-pip python3-venv -y
 
         version=$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$(chromium-browser --version | grep -oP 'Chromium \K\d+'))
         wget https://chromedriver.storage.googleapis.com/${version}/chromedriver_linux64.zip
-        sudo unzip chromedriver_linux64.zip -d /usr/bin
+        unzip chromedriver_linux64.zip -d /usr/bin
         rm chromedriver_linux64.zip
 
         cd tipsy_tuesday

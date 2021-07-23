@@ -125,3 +125,23 @@ class TestGroup(TestBase):
         # check history
         element = self.driver.find_element_by_xpath('/html/body/div[15]')
         assert 'genever' in element.text
+
+class TestAddrec(TestBase):
+    def test_addrec(self):
+        # navigate to add recipe page
+        self.driver.find_element_by_xpath('/html/body/div[1]/a[2]').click()
+        # find and populate text box
+        self.driver.find_element_by_xpath('//*[@id="name"]').send_keys('campari spritz')
+        # find and populate text box
+        self.driver.find_element_by_xpath('//*[@id="description"]').send_keys('whatnot')
+        # find and populate text box
+        self.driver.find_element_by_xpath('//*[@id="method"]').send_keys('what')
+        # find and click ingredient button
+        self.driver.find_element_by_xpath('//*[@id="ings1"]').click()
+        # find and click ingredient option button
+        self.driver.find_element_by_xpath('//*[@id="ings1"]/option[3]').click()
+        # find and click submit button
+        self.driver.find_element_by_xpath('//*[@id="submit"]').click()
+        # check history
+        element = self.driver.find_element_by_xpath('/html/body/div[2]/div[2]')
+        assert 'campari spritz' in element.text

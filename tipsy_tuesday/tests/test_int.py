@@ -113,3 +113,15 @@ class TestUpdate(TestBase):
         # check history
         element = self.driver.find_element_by_xpath('/html/body/div[2]/div[1]')
         assert 'spritz' in element.text
+
+class TestGroup(TestBase):
+    def test_add_group(self):
+        # navigate to add group page
+        self.driver.find_element_by_xpath('/html/body/div[1]/a[3]').click()
+        # find and populate text box
+        self.driver.find_element_by_xpath('//*[@id="group_name"]').send_keys('genever')       
+        # find and add ingredient
+        self.driver.find_element_by_xpath('//*[@id="submit"]').click()
+        # check history
+        element = self.driver.find_element_by_xpath('/html/body/div[15]')
+        assert 'genever' in element.text

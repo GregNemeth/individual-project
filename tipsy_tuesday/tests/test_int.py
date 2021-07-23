@@ -145,3 +145,11 @@ class TestAddrec(TestBase):
         # check history
         element = self.driver.find_element_by_xpath('/html/body/div[2]/div[2]')
         assert 'campari spritz' in element.text
+
+class TestDelete(TestBase):
+    def test_delete(self):
+        # navigate to delete recipe 
+        self.driver.find_element_by_xpath('/html/body/div[2]/div/a[1]').click
+        # check recipe not showing on page
+        element = self.driver.find_element_by_xpath('/html/body/div[2]/div/text()')
+        assert 'Negroni' not in element.text

@@ -151,5 +151,5 @@ class TestDelete(TestBase):
         # navigate to delete recipe 
         self.driver.find_element_by_xpath('/html/body/div[2]/div/a[1]').click
         # check recipe not showing on page
-        element = self.driver.find_element_by_xpath('/html/body/div[2]/div/text()')
+        element = self.driver.find_element_by_xpath('/html/body/div[2]/div')
         assert 'Negroni' not in element.text

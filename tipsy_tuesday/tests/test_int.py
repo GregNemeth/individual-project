@@ -101,11 +101,11 @@ class TestCreate(TestBase):
 class TestUpdate(TestBase):
     def test_updaterec(self):
         # navigate to update page
-        self.driver.find_element_by_xpath('/html/body/div[2]/div[1]/a[2]').click()
+        self.driver.find_element_by_xpath('/html/body/div[2]/div/a[2]').click()
         # find and populate text box
         self.driver.find_element_by_xpath('//*[@id="name"]').send_keys(' spritz')
         # find and click ingredient button
-        self.driver.find_element_by_xpath('//*[@id="ings1"]"]').click()
+        self.driver.find_element_by_xpath('//*[@id="ings1"]').click()
         # find and click ingredient option button
         self.driver.find_element_by_xpath('//*[@id="ings1"]/option[5]').click()
         # find and click submit button

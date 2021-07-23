@@ -38,11 +38,21 @@ class TestBase(LiveServerTestCase):
             
         db.session.commit()
 
-        groups = ('Gin','Rum','Tequila','Whisky','Vodka','Vermouth','Liquor','Amaro','Bitter','Soft Drink','Dry Ingredient',)
+        groups = (
+            'Gin',
+            'Rum',
+            'Tequila',
+            'Whisky',
+            'Vodka',
+            'Vermouth',
+            'Liquor',
+            'Amaro',
+            'Bitter',
+            'Soft Drink',
+            'Dry Ingredient'
+            )
         for group in groups:
             db.session.add(Ingredientgroup(group_name=group))
-
-        db.session.commit()
 
         jensens = Ingredient(ing_name="Jensen's Old Tom")
         jensens.ing_group_id = 2
@@ -53,14 +63,21 @@ class TestBase(LiveServerTestCase):
         campari = Ingredient(ing_name="Campari")
         campari.ing_group_id = 9
         db.session.add(campari)
+        db.session.add(
+            Cocktailrecipes(
+            name='Negroni',
+            description='Bittersweet aperitivo',
+            method='stir until chilled and strain onto fresh ice')
+            )
 
-        db.session.add(Cocktailrecipes(name='Negroni', description='Bittersweet aperitivo', method='stir until chilled and strain onto fresh ice'))
-        junction1 = Junction(rec_id=1,ing_id=2,quantity_id=6)
-        junction2= Junction(rec_id=1,ing_id=3,quantity_id=5)
-        junction3= Junction(rec_id=1,ing_id=4,quantity_id=5)
-        db.session.add(junction1)
-        db.session.add(junction2)
-        db.session.add(junction3)
+        junctions = [
+            Junction(rec_id=1,ing_id=2,quantity_id=6),
+            Junction(rec_id=1,ing_id=3,quantity_id=5),
+            Junction(rec_id=1,ing_id=4,quantity_id=5)
+            ]
+
+        for j in junctions:
+            db.session.add(j)
         db.session.commit()
 
         chrome_options = webdriver.chrome.options.Options()

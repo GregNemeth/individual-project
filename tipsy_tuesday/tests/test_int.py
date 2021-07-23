@@ -107,7 +107,7 @@ class TestUpdate(TestBase):
         # find and click ingredient button
         self.driver.find_element_by_xpath('//*[@id="ings1"]').click()
         # find and click ingredient option button
-        self.driver.find_element_by_xpath('//*[@id="ings1"]/option[5]').click()
+        self.driver.find_element_by_xpath('//*[@id="ings1"]/option[4]').click()
         # find and click submit button
         self.driver.find_element_by_xpath('//*[@id="submit"]').click()
         # check history

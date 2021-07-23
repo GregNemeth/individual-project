@@ -98,14 +98,18 @@ class TestCreate(TestBase):
         element = self.driver.find_element_by_xpath('/html/body/div[19]')
         assert 'banana' in element.text
 
-# class TestUpdate(TestBase):
-#     def test_update(self):
-#         # navigate to create page
-#         self.driver.find_element_by_xpath('/html/body/div[2]/a[1]').click()
-#         # find and populate text box
-#         self.driver.find_element_by_xpath('//*[@id="name"]').send_keys('banana')
-#         # find and click submit button
-#         self.driver.find_element_by_xpath('//*[@id="submit"]').click()
-#         # check history
-#         element = self.driver.find_element_by_xpath('/html/body/div[2]')
-#         assert 'banana' in element.text
+class TestUpdate(TestBase):
+    def test_updaterec(self):
+        # navigate to update page
+        self.driver.find_element_by_xpath('/html/body/div[2]/div[1]/a[2]').click()
+        # find and populate text box
+        self.driver.find_element_by_xpath('//*[@id="name"]').send_keys(' spritz')
+        # find and click ingredient button
+        self.driver.find_element_by_xpath('//*[@id="ings1"]"]').click()
+        # find and click ingredient option button
+        self.driver.find_element_by_xpath('//*[@id="ings1"]/option[5]').click()
+        # find and click submit button
+        self.driver.find_element_by_xpath('//*[@id="submit"]').click()
+        # check history
+        element = self.driver.find_element_by_xpath('/html/body/div[2]/div[1]')
+        assert 'spritz' in element.text

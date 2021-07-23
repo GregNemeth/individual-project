@@ -149,7 +149,15 @@ class TestAddrec(TestBase):
 class TestDelete(TestBase):
     def test_delete(self):
         # navigate to delete recipe 
-        self.driver.find_element_by_xpath('/html/body/div[2]/div/a[1]').click
+        self.driver.find_element_by_xpath('/html/body/div[2]/div/a[1]').click()
         # check recipe not showing on page
-        element = self.driver.find_element_by_xpath('/html/body/div[2]/div[1]/a[1]')
-        assert 'Negroni' not in element.text
+        element = self.driver.find_element_by_xpath('/html/body')
+        assert 'campari' not in element.text
+
+class TestDetails(TestBase):
+    def test_detail(self):
+        # navigate to details
+        self.driver.find_element_by_xpath('/html/body/div[2]/div[1]/a[3]').click()
+        # check content
+        element = self.driver.find_element_by_xpath('/html/body/div[2]/h2')
+        assert 'Negroni' in element.text

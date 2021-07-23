@@ -1,6 +1,6 @@
 steps:
   - name: 'ubuntu'
-    tags: '18.04'
+    
     entrypoint: 'bash'
     args: 
       - '-c'

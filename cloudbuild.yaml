@@ -1,11 +1,11 @@
 steps:
   - name: 'ubuntu'
-    
+    tag: '18.04'
     entrypoint: 'bash'
     args: 
       - '-c'
       - |
-        
+        #!/bin/bash
         sudo apt-get update
         sudo apt-get install chromium-browser wget unzip python3 python3-pip python3-venv -y
 

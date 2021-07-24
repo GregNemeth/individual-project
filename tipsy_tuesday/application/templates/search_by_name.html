@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+<head>
+</head>
+{% block body %}
+<body>
+    <div class='form'>
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+        {{ form.name.label }} &emsp; {{ form.name }}&emsp;{{ form.search }}
+        </form>
+    </div><br>
+    <div class="results">
+        <ul>
+        {% for resy in resultname %}
+           <li> {{ resy.name }} &emsp; {{ resy.rec_id }}
+               <a href="{{ url_for('show_details', rec_id=resy.rec_id) }}">Details</a>         
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+{% endblock body %}

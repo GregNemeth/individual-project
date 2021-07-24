@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import SelectField, StringField, SubmitField
+from wtforms import validators
 from wtforms.validators import DataRequired
 
 
@@ -46,6 +47,10 @@ class UpdateRecipe(FlaskForm):
     quants5 = SelectField('choose quantity', choices=[])
     
     submit = SubmitField('add/update recipe')
+
+class SearchName(FlaskForm):
+    name = StringField('Enter recipe name to search', default='', validators=[DataRequired()])
+    search = SubmitField('search now')
 
 
 

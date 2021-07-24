@@ -3,7 +3,7 @@ from flask import redirect, request, url_for
 from flask.templating import render_template
 from application import app, db
 from application.models import Cocktailrecipes, Ingredient, Ingredientgroup, Junction, Quantity
-from application.forms import AddGroup, AddIngredient, AddRecipe, UpdateRecipe
+from application.forms import AddGroup, AddIngredient, AddRecipe, SearchName, UpdateRecipe
 
 
 @app.route('/')
@@ -21,7 +21,7 @@ def add_ingredient():
     form = AddIngredient()
     
     if request.method == 'POST':
-        new_ingredient = Ingredient(ing_name=form.ingredient.data)
+        new_ingredient = Ingredient(ing_name=form.ingredient.data.title())
         new_ingredient.ing_group_id = form.ing_group.data
         db.session.add(new_ingredient)
         db.session.commit()
@@ -40,7 +40,7 @@ def add_group():
     form = AddGroup()
 
     if request.method == 'POST':
-        new_group = Ingredientgroup(group_name=form.group_name.data)
+        new_group = Ingredientgroup(group_name=form.group_name.data.title())
         db.session.add(new_group)
         db.session.commit()
 
@@ -58,7 +58,7 @@ def add_recipe():
     
 
     if request.method == 'POST':
-        new_recipe = Cocktailrecipes(name=form.name.data)
+        new_recipe = Cocktailrecipes(name=form.name.data.title())
         new_recipe.description = form.description.data
         new_recipe.method = form.method.data
         db.session.add(new_recipe)
@@ -79,14 +79,21 @@ def add_recipe():
         new_junction5.ing_id = form.ings5.data
         new_junction5.quantity_id = form.quants5.data
         
-        db.session.add(new_junction1)
-        db.session.add(new_junction2)
-        db.session.add(new_junction3)
-        db.session.add(new_junction4)
-        db.session.add(new_junction5)
+        junctions = [
+            new_junction1,
+            new_junction2,
+            new_junction3,
+            new_junction4,
+            new_junction5
+            ]
+        for j in junctions:
+            db.session.add(j)
+        
         db.session.commit()
+
         cleanup = Junction.query.filter_by(ing_id=1).all()
         for items in cleanup:
+
             db.session.delete(items)
         db.session.commit()
         
@@ -128,10 +135,12 @@ def update_recipe(rec_id):
     arquants = Quantity.query.all()
 
     if request.method == 'POST':
-        current_recipe.name = form.name.data
+        current_recipe.name = form.name.data.title()
         current_recipe.description = form.description.data
         current_recipe.method = form.method.data
+        
         drop_old_junction = Junction.query.filter_by(rec_id=current_recipe.rec_id).all()
+        
         for oj in drop_old_junction:
             db.session.delete(oj)
         db.session.commit()
@@ -153,11 +162,16 @@ def update_recipe(rec_id):
         new_junction5.ing_id = form.ings5.data
         new_junction5.quantity_id = form.quants5.data
         
-        db.session.add(new_junction1)
-        db.session.add(new_junction2)
-        db.session.add(new_junction3)
-        db.session.add(new_junction4)
-        db.session.add(new_junction5)
+        junctions = [
+            new_junction1,
+            new_junction2,
+            new_junction3,
+            new_junction4,
+            new_junction5
+            ]
+        for j in junctions:
+            db.session.add(j)
+        
         db.session.commit()
         cleanup = Junction.query.filter_by(ing_id=1).all()
         for items in cleanup:
@@ -199,10 +213,21 @@ def show_details(rec_id):
 
     return render_template('details.html', selected_recipe=selected_recipe, dictionary=dictionary)
 
-# @app.route('/search_by_name', methods=['GET','POST'])
-# def search():
+@app.route('/search_by_name', methods=['GET','POST'])
+def search():
+    form = SearchName()
+    recipes = Cocktailrecipes.query.all()
+    target = form.name.data.title()
     
-#     return 'name'
+    
+    if request.method == 'POST':
+        resultname = db.session.query(Cocktailrecipes).filter_by(name=target).all()
+        return render_template('search_by_name.html', resultname=resultname, form=form,  recipes=recipes)
+        
+
+    else:
+        resultname = db.session.query(Cocktailrecipes).filter_by(name=target).all()
+        return render_template('search_by_name.html', form=form, resultname=resultname, recipes=recipes)
 
 # @app.route('/search_by_group', methods=['GET','POST'])
 # def search_by_group():

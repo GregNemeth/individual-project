@@ -89,7 +89,8 @@ For project tracking I intend to use Jira. Practicing with this tool is going to
 
 ![tasks in Jira](https://github.com/GregNemeth/individual-project/blob/feature/Images/jira%20backlog_adobespark.png) 
 #### _entity relationship diagram_
-We can see below the original UML styled Entity-Relationship Diagram,and the older versions further below:
+
+We can see below the actual UML styled Entity-Relationship Diagram,and the older versions further below:
 
 ![schema_in_use](https://github.com/GregNemeth/individual-project/blob/feature/Images/dbschemalatestest_adobespark.png)
 ![erd_diagram](https://github.com/GregNemeth/individual-project/blob/dev/Images/ERD.png)
@@ -101,20 +102,29 @@ We can see below the original UML styled Entity-Relationship Diagram,and the old
 As we take a look at the diagrams we can observe that a many-to-many relationship is achieved through the use of a junction table,
 combining multiple one-to-many relations.
 <br/><br/> 
-This schema can be expanded in the future, for example: if we would like to implement a login/authentication feature we could connect further tables to handle user names, password, storage and sharing of favourite recipes; 
+The Cocktail recipes table stores the id of the recipe , its name, description and method of making. The ingredients table contains individual ingredients, the quantity the quantities and there's also an ingredient group table that is going to be used further down the line to accomodate more search options. The group table , unlike the others is not directly connected to the junction table, it connects to the ingredients via a one-to many relationship, as a group(ie. gin) can include many different brands. The other tables are all connected to the junction, achieving our many-to-many relationship , where a recipe has multiple ingredients, many ingredients can be part of many recipes and all of them can be used in different quantities
+<br/><br/>
+This schema can be expanded in the future, for example: if we would like to implement a login/authentication feature we could connect further tables to handle usernames, password, storage and sharing of favourite recipes; 
 <br/><br/>
 However, for now , this is outside of the current scope of the project.
 
-For the sake of completeness I also inculed a Chen-style diagram we can see on the right.
+For the sake of completeness I also inculed a Chen-style diagram we can see on the right(outdated).
 <br/><br/>
 
 #### _Risk assessment_
 You can see a snippet of the current risk assessment below; this document is extended continously, in light of new information. Any new information added to the risk assessment is going to be hightlighted. You can see the original over [here](https://docs.google.com/spreadsheets/d/1xwiIfhJBYPYRosDp-_ihJtK8yqbxVfID_9N0vqu9v_I/edit?usp=sharing)
 <br/>
-![risk_assessment](https://github.com/GregNemeth/individual-project/blob/dev/Images/risk_assessment_in_progress_1.png)
-
+![risk_assessment](https://github.com/GregNemeth/individual-project/blob/feature/Images/risklatest_adobespark.png)
 
 </div>
+
+#### _Test analysis_
+
+This project included unit and integration testing, which was achieved by PyTest and Selenium. The tests were configured via a .coverage file, to exclude any unneccessary items(ie venv/). Tests were run both locally and on a Jenkins server as well. See images of the results below:
+<div style="block;"> 
+<img align="left" src="https://github.com/GregNemeth/individual-project/blob/feature/Images/cobertura_adobespark.png" alt="cobertura"/>
+<div style="block;"> 
+<img align="right" src="https://github.com/GregNemeth/individual-project/blob/feature/Images/pytest.png" alt="pytest"/>
 
 
 ## **Development**

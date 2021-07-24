@@ -123,3 +123,35 @@ You can see a snippet of the current risk assessment below; this document is ext
 
 ## **Development**
 
+#### _Unit testing_
+
+Unit testing was a great part of the project and was shifted to the left , accompanying every step of the process.
+The app was broken to routes and methods were tested individually.
+
+#### _Integration testing_
+
+Integration testing was achieved via the use of Selenium and the chromium webdriver.
+The application was tested as a whole , with simulated inputs from the webdriver
+
+#### _Front end_
+
+* _Home page:_ As we arrive to the home page ('/'), we can see a pre-uploaded recipe (Negroni), ingredient groups, and ingredients. There is also a navigation bar, part of the (layout.html), making it omni-present across all pages. Clicking on the details button, placed next to each recipe will take the user to a page where all information (ingredients, method and quantities) regarding the specified recipe will be shown. The user will also have options to update or delete the recipe here.  
+Crud used: READ, DELETE, UPDATE
+
+* _Add groups:_ the add groups link will direct the user to a page where they can add further categories to the database. As mentioned earlier this can expand the search capabilities of the app. (For example, the user might have a certain brand of rum, one search function would enable him to look for drinks specifically made with that brand, or alternatively they could look for all the recipes made with rum, etc..)  
+Crud used: CREATE
+
+* _Add ingredients:_ Another link we find in the navbar is the Add Ingredient. This enables the users to expand the list of ingredients available for creating recipes. This can be useful if in the future login/authentication is added. Imagine the scenario where the app is part of a cocktail blog. Certain functions could be separated, especially create, update and delete. A selected group of people who logs in can act as moderators and access these functions, allowing them to grow the list of recipes and ingredients, while the search/read functions can be used by anyone without login. This way the database would only contain relevant entries, that could be browsed by anyone.  
+Crud used: CREATE
+
+
+* _Add recipe:_ The next item in the navbar is the add recipe. This page allows users to create recipes from the available ingredients. These recipes are then displayed on the home page.  
+Crud used: CREATE
+
+
+* _Search recipe by name:_ Finally , this function enables users to search recipes by their name.  
+Crud used: CREATE
+
+* _Update recipe:_ Clicking this button will redirect the user to the page not dissimilar to the _Add recipe_ page. The stringfields are pre-populated to help remind the user which recipe is being modified. Upon submitting the system updates the recipe information, and deletes any old junction tables that are not needed, thus making sure an updated recipe does not contain ingredients from previous versions. 
+
+

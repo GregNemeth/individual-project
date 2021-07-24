@@ -1,4 +1,6 @@
-from application.routes import add_group, add_recipe, add_ingredient, home, update_recipe, delete_recipe
+from sqlalchemy.sql.expression import select
+
+from application.routes import add_group, add_recipe, add_ingredient, home, update_recipe, delete_recipe, search
 from os import name
 from flask.helpers import url_for
 
@@ -100,6 +102,10 @@ class TestViews(TestBase):
         response = self.client.get(url_for('delete_recipe', rec_id=1))
         self.assertEqual(response.status_code, 302)
 
+    def test_searchname(self):
+        response = self.client.get(url_for('search'))
+        self.assert200
+
 class TestRead(TestBase):
     def test_home(self):
         response = self.client.get(url_for('home'))
@@ -116,7 +122,7 @@ class TestCreate(TestBase):
             follow_redirects=True
             )
 
-        assert 'dingle' in response.data.decode()
+        assert 'Dingle' in response.data.decode()
 
 class TestCreateGroup(TestBase):
     def test_addgroup(self):
@@ -126,7 +132,7 @@ class TestCreateGroup(TestBase):
             follow_redirects=True
             )
 
-        assert 'decoration' in response.data.decode()
+        assert 'Decoration' in response.data.decode()
 
 class TestCreateRecipe(TestBase):
     def test_addrec(self):
@@ -152,7 +158,7 @@ class TestCreateRecipe(TestBase):
             follow_redirects=True
             )
 
-        assert 'martinez' in response.data.decode()
+        assert 'Martinez' in response.data.decode()
 
 class TestDelete(TestBase):
     def test_delete(self):
@@ -186,7 +192,7 @@ class TestupdateRecipe(TestBase):
             follow_redirects=True
             )
 
-        assert 'martini' in response.data.decode()
+        assert 'Martini' in response.data.decode()
 
 
 class TestDetail(TestBase):
@@ -197,3 +203,16 @@ class TestDetail(TestBase):
         )
 
         assert 'Jensen' in response.data.decode()
+
+# class TestSearchName(TestBase):
+#     def test_searchname(self):
+#         response = self.client.post(
+#             url_for('search'),
+#             data={
+#                 name:'Negroni',
+#                 search:'search now'                
+#                 },
+#                 follow_redirects=True            
+#         )
+
+#         assert 'Negroni' in response.data.decode()

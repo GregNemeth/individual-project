@@ -113,7 +113,7 @@ class TestCreate(TestBase):
         self.driver.find_element_by_xpath('//*[@id="submit"]').click()
         # check history
         element = self.driver.find_element_by_xpath('/html/body/div[19]')
-        assert 'banana' in element.text
+        assert 'Banana' in element.text
 
 class TestUpdate(TestBase):
     def test_updaterec(self):
@@ -129,7 +129,7 @@ class TestUpdate(TestBase):
         self.driver.find_element_by_xpath('//*[@id="submit"]').click()
         # check history
         element = self.driver.find_element_by_xpath('/html/body/div[2]/div[1]')
-        assert 'spritz' in element.text
+        assert 'Spritz' in element.text
 
 class TestGroup(TestBase):
     def test_add_group(self):
@@ -141,7 +141,7 @@ class TestGroup(TestBase):
         self.driver.find_element_by_xpath('//*[@id="submit"]').click()
         # check history
         element = self.driver.find_element_by_xpath('/html/body/div[15]')
-        assert 'genever' in element.text
+        assert 'Genever' in element.text
 
 class TestAddrec(TestBase):
     def test_addrec(self):
@@ -161,7 +161,7 @@ class TestAddrec(TestBase):
         self.driver.find_element_by_xpath('//*[@id="submit"]').click()
         # check history
         element = self.driver.find_element_by_xpath('/html/body/div[2]/div[2]')
-        assert 'campari spritz' in element.text
+        assert 'Campari Spritz' in element.text
 
 class TestDelete(TestBase):
     def test_delete(self):
@@ -169,7 +169,7 @@ class TestDelete(TestBase):
         self.driver.find_element_by_xpath('/html/body/div[2]/div/a[1]').click()
         # check recipe not showing on page
         element = self.driver.find_element_by_xpath('/html/body')
-        assert 'campari' not in element.text
+        assert 'Spritz' not in element.text
 
 class TestDetails(TestBase):
     def test_detail(self):
@@ -177,4 +177,14 @@ class TestDetails(TestBase):
         self.driver.find_element_by_xpath('/html/body/div[2]/div[1]/a[3]').click()
         # check content
         element = self.driver.find_element_by_xpath('/html/body/div[2]/h2')
+        assert 'Negroni' in element.text
+
+class TestSearchname(TestBase):
+    def test_searchname(self):
+        # navigate to details
+        self.driver.find_element_by_xpath('/html/body/div[1]/a[5]').click()
+        # input
+        self.driver.find_element_by_xpath('//*[@id="name"]').send_keys('negroni')
+        self.driver.find_element_by_xpath('//*[@id="search"]').click()
+        element = self.driver.find_element_by_xpath('/html/body/div[3]')
         assert 'Negroni' in element.text

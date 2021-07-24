@@ -59,39 +59,35 @@ The tech stack that is going to be used is:
 
 ### Proposal
 
-I have come up with the idea of building an app that would help users find cocktail recipes, based on the ingredients they might have at home.
+I have come up with the idea of building an app that would help users find cocktail recipes, based on the ingredients they might have at home. During the development I had to make the decision to refactor the existing code in order to manage the available time more efficiently. The new proposal is a cocktail recipe sharing app with a search by name function included. The original proposal can still be achieved, the updated database schema is going to be shown further below and is already implemented to support both the original and new idea.
 
 The implementation of CRUD can be seen below:
 
 #### _Create:_
-* user
-* add available ingredients
+* add ingredient groups(rum,gin,etc.)
+* add ingredients 
 * upload own recipes
   * recipe name
   * ingredients
   * measures
   * methods
-  * notes
+  
 #### _Read:_
-* Retrieve list of recipes that match the given ingredients
-* Get recommendations like:
-  * If you can pop down to the shop for an xyz, you could also make this drink!
-  * If you have a couple of lemons lying around, you could also use this recipe!
-  * If you happen to have some sugar, it could be used in this tasty beverage!
+* Retrieve list of recipes that match the given name
+* Show a list of uploaded recipes, ingredients, groups
 #### _Update:_
-* Update/Modify ingredients Given
-* Modify own recipes
+* Update/Modify recipes
 
 #### _Delete:_
-* Remove own recipes
-* Remove ingredients given
-* Delete User account
+* Remove recipes
+
+
 
 ## **Architecture**
 #### _Project-tracking_
 For project tracking I intend to use Jira. Practicing with this tool is going to be handy,  considering it is widely adoptded and its ability to be integrated with other parts of the development pipeline.
 
-![First tasks in Jira](https://github.com/GregNemeth/individual-project/blob/dev/Images/Jira_beginning.bmp) 
+![tasks in Jira]https://github.com/GregNemeth/individual-project/blob/feature/Images/jira%20backlog_adobespark.png 
 #### _entity relationship diagram_
 We can see below the UML styled Entity-Relationship Diagram:
 

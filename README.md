@@ -89,9 +89,9 @@ For project tracking I intend to use Jira. Practicing with this tool is going to
 
 ![tasks in Jira](https://github.com/GregNemeth/individual-project/blob/feature/Images/jira%20backlog_adobespark.png) 
 #### _entity relationship diagram_
-We can see below the UML styled Entity-Relationship Diagram:
+We can see below the original UML styled Entity-Relationship Diagram,and the older versions further below:
 
-
+![schema_in_use](https://github.com/GregNemeth/individual-project/blob/feature/Images/dbschemalatestest_adobespark.png)
 ![erd_diagram](https://github.com/GregNemeth/individual-project/blob/dev/Images/ERD.png)
 
 
@@ -101,7 +101,7 @@ We can see below the UML styled Entity-Relationship Diagram:
 As we take a look at the diagrams we can observe that a many-to-many relationship is achieved through the use of a junction table,
 combining multiple one-to-many relations.
 <br/><br/> 
-This scheme can be expanded in the future, for example: if we would like to implement a login/authentication feature we could connect further tables to handle user names, password, storage and sharing of favourite recipes; 
+This schema can be expanded in the future, for example: if we would like to implement a login/authentication feature we could connect further tables to handle user names, password, storage and sharing of favourite recipes; 
 <br/><br/>
 However, for now , this is outside of the current scope of the project.
 

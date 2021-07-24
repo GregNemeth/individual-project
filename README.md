@@ -87,7 +87,7 @@ The implementation of CRUD can be seen below:
 #### _Project-tracking_
 For project tracking I intend to use Jira. Practicing with this tool is going to be handy,  considering it is widely adoptded and its ability to be integrated with other parts of the development pipeline.
 
-![tasks in Jira]https://github.com/GregNemeth/individual-project/blob/feature/Images/jira%20backlog_adobespark.png 
+![tasks in Jira](https://github.com/GregNemeth/individual-project/blob/feature/Images/jira%20backlog_adobespark.png) 
 #### _entity relationship diagram_
 We can see below the UML styled Entity-Relationship Diagram:
 

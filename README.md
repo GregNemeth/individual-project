@@ -9,7 +9,7 @@
    * [Jira board](#project-tracking)
    * [Entity Relationship Diagram](#entity-relationship-diagram)
    * [Risk assessment](#risk-assessment)
-   * [Continuos Integration](#continous-integration) 
+   * [Continuos integration](#continuous-integration) 
    * [Test analysis](#test-analysis)
  * [Development](#development)  
    * [Unit testing](#unit-testing)  
@@ -124,11 +124,21 @@ You can see a snippet of the current risk assessment below; this document is ext
 </div>
 
 #### _Continuous integration_
-
 Continuous integration was achieved by implementing automation into the development process. As pushes were made in the VCS, the github webhook activated the Jenkins server, unit and integration tests were ran and reports were generated and sent back in the pipeline.
 ![ci_pipeline](https://github.com/GregNemeth/individual-project/blob/dev/Images/cipipeline.png)
 
+Jenkins was configured to run the following script:
+```bash
+#!/bin/bash
+sudo apt-get install python3 python3-pip python3-venv -y
 
+cd tipsy_tuesday
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r requirements.txt
+
+python3 -m pytest --cov --cov-report xml -v
+```
 
 #### _Test analysis_
 

@@ -11,7 +11,12 @@
    * [Risk assessment](#risk-assessment)
    * [Continuos Integration](#continous-integration) 
    * [Test analysis](#test-analysis)
- * [Development](#development)
+ * [Development](#development)  
+   * [Unit testing](#unit-testing)  
+   * [Integration testing](#integration-testing)
+   * [Front-end design](#front-end)
+ * [Footer](#footer)
+
 
 ## **Introduction**
 
@@ -118,6 +123,13 @@ You can see a snippet of the current risk assessment below; this document is ext
 
 </div>
 
+#### _Continuous integration_
+
+Continuous integration was achieved by implementing automation into the development process. As pushes were made in the VCS, the github webhook activated the Jenkins server, unit and integration tests were ran and reports were generated and sent back in the pipeline.
+![ci_pipeline](https://github.com/GregNemeth/individual-project/blob/dev/Images/cipipeline.png)
+
+
+
 #### _Test analysis_
 
 This project included unit and integration testing, which was achieved by PyTest and Selenium. The tests were configured via a .coverage file, to exclude any unneccessary items(ie venv/). Tests were run both locally and on a Jenkins server as well. See images of the results below:
@@ -165,3 +177,17 @@ Crud used: CREATE
 ![updaterec](https://github.com/GregNemeth/individual-project/blob/dev/Images/updaterec.png)
 
 
+## **Footer**
+
+#### **Future improvements**
+As already mentioned earlier, there are several application for this project in the future. Database tables for login and authentication can be added to separate functions for increased control and customizability. With minor modifications the app can be deployed to add extra functions for a cocktail-blog; tables for ingredient prices can be added to refactor the code for use in a business environment, or it can be used as an e-menu for bars and restaurants
+
+#### **Author**
+
+_Gergely Nemeth_
+
+_Acknowledgements:_  
+Victoria Sacre  
+Oliver Nichols    
+Ryan Wright
+Peter Jasz

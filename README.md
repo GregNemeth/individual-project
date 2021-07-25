@@ -90,7 +90,7 @@ For project tracking I intend to use Jira. Practicing with this tool is going to
 ![tasks in Jira](https://github.com/GregNemeth/individual-project/blob/feature/Images/jira%20backlog_adobespark.png) 
 #### _entity relationship diagram_
 
-We can see below the actual UML styled Entity-Relationship Diagram,and the older versions further below:
+We can see below the current, UML styled Entity-Relationship Diagram,and the older versions further below:
 
 ![schema_in_use](https://github.com/GregNemeth/individual-project/blob/feature/Images/dbschemalatestest_adobespark.png)
 ![erd_diagram](https://github.com/GregNemeth/individual-project/blob/dev/Images/ERD.png)

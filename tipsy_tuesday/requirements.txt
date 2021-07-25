@@ -1,0 +1,10 @@
+flask
+flask-sqlalchemy
+flask-wtf
+flask_testing
+flask-login
+wtforms
+pymysql
+selenium
+pytest
+pytest-cov

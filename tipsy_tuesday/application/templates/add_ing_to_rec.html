@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<body>
+    <div class='form'>
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            {% for addIngreds in form.ings %}
+            <br>
+            {{ form.ingredient.label }} {{ form.ingredient }} &emsp;{{ form.quantity.label }} {{ form.quantity }}
+            <br>
+            {% endfor %}
+            {{ form.submit }} <a href="{{ url_for('home') }}">Add ingredients to this recipe</a>
+        </form>
+    </div>
+</body>
+
+{% endblock body %}

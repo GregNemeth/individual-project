@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<body>
+    <div class='form'>
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <br>
+            {{ form.name.label }} &emsp;&emsp;&emsp;{{ form.name }} 
+            <br>
+            {{ form.description.label }} &nbsp;{{ form.description }}   
+            <br>
+            {{ form.method.label }}&emsp;&emsp;&emsp; {{ form.method }}
+            <br>
+            {{ form.ings1 }} {{ form.quants1 }}
+            <br>
+            {{ form.ings2 }} {{ form.quants2 }}
+            <br>
+            {{ form.ings3 }} {{ form.quants3 }}
+            <br>
+            {{ form.ings4 }} {{ form.quants4 }}
+            <br>
+            {{ form.ings5 }} {{ form.quants5 }}
+            
+            <br>
+            
+            {{ form.submit }} 
+        </form>
+    </div>
+</body>
+
+{% endblock body %}

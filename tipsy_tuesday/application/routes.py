@@ -189,9 +189,9 @@ def update_recipe(rec_id):
         form.description.data = current_recipe.description
         form.method.data = current_recipe.method
         form.ings1.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
-        form.quants1.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]      # some comment here
+        form.quants1.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
         form.ings2.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
-        form.quants2.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
+        form.quants2.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]  # some comment
         form.ings3.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
         form.quants3.choices = [(quantity.quantity_id, quantity.quantity_ml) for quantity in arquants]
         form.ings4.choices = [(ingredient.ing_id, ingredient.ing_name) for ingredient in aringredients]
@@ -208,7 +208,7 @@ def show_details(rec_id):
     selected_recipe = Cocktailrecipes.query.get(rec_id)     # get recipe id, ingredients and quantities with query
     ings_quants = db.session.query(Ingredient,Quantity)\
         .select_from(join(Ingredient, Junction))\
-        .join(Cocktailrecipes, Cocktailrecipes.rec_id == Junction.rec_id)\      
+        .join(Cocktailrecipes, Cocktailrecipes.rec_id == Junction.rec_id)\
         .join(Quantity, Quantity.quantity_id == Junction.quantity_id)\
         .filter(Junction.rec_id==selected_recipe.rec_id).all()
 

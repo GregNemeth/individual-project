@@ -1,0 +1,36 @@
+version: "3.8"
+
+services: 
+    tipsy-app:
+        container_name: tipsy-app
+        image: tipsy:test
+        build: .
+        environment: 
+            MYSQL_DATABASE:
+            MYSQL_ROOT_PASSWORD:
+        env_file: .env
+        ports:
+            - target: 5000
+        depends_on:
+            - "tipsy-db"
+    
+    tipsy-db:
+        container_name: tipsy-db
+        build: db
+        ports:
+            - target: 3306
+        environment: 
+            MYSQL_DATABASE:
+            MYSQL_ROOT_PASSWORD:
+        env_file: .env
+
+    tipsy-proxy:
+        image: nginx:alpine
+        container_name: tipsy-proxy
+        ports:
+            - target: 80
+              published: 80
+        volumes: 
+            - type: bind
+              source: ./nginx/nginx.conf
+              target: /etc/nginx/nginx.conf

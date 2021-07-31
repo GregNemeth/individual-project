@@ -23,6 +23,10 @@ services:
             MYSQL_DATABASE:
             MYSQL_ROOT_PASSWORD:
         env_file: .env
+        volumes: 
+            - type: volume
+              source: tipsy-volume
+              target: /var/lib/mysql
 
     tipsy-proxy:
         image: nginx:alpine
@@ -34,3 +38,6 @@ services:
             - type: bind
               source: ./nginx/nginx.conf
               target: /etc/nginx/nginx.conf
+
+volumes:
+    tipsy-volume:

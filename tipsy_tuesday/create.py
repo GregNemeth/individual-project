@@ -1,7 +1,7 @@
 from application.models import  Cocktailrecipes,Ingredientgroup, Ingredient, Junction, Quantity
 from application import db
 
-db.drop_all()
+
 db.create_all()
 
 db.session.add(Ingredientgroup(group_name=None))
